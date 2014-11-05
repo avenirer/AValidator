@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Validation
+ * Class Avalidator
  */
 class Avalidator
 {
