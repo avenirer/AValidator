@@ -249,7 +249,7 @@ class Avalidator
      */
     private function _validate_required($key, $subkey, $params)
     {
-        $this->_error_messages['required'] = 'Campul %s este obligatoriu';
+        $this->_error_messages['required'] = 'Field %s is required';
         if (strlen($this->_fields[$key]['value'][$subkey]) == 0) {
             $this->_write_error($key, 'required', array($this->_fields[$key]['element_name']));
         }
