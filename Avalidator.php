@@ -17,8 +17,8 @@ class Avalidator
      * @var array
      */
     private $_error_container = array(
-        'start' => '<div class="error">',
-        'end' => '</div>');
+            'start' => '<div class="error">',
+            'end' => '</div>');
     /**
      * @var array
      */
@@ -219,7 +219,8 @@ class Avalidator
 
     /**
      * @param $key
-     * @param $error
+     * @param $error_id
+     * @param $error_mess
      */
     public function append_error($key, $error_id = 'appended', $error_mess = 'There was another error.')
     {
@@ -262,13 +263,15 @@ class Avalidator
      * @param $params
      * @return bool
      */
+
+    //TODO NEEDS REWORK
     private function _validate_length($key, $subkey, $params)
     {
         $args = $params['args'];
         if (strlen($args) == 0) $args = '0';
         $this->_error_messages['str_between'] = 'Field %s must containe between %s and %s characters';
         $this->_error_messages['str_morethan'] = 'Field %s must contain more than %s characters';
-        $this->_error_messages['str_exact'] = 'Field %s must contain lesser than %s characters';
+        $this->_error_messages['str_exact'] = 'Field %s must contain exactly %s characters';
         if (strpos($args, '-') !== FALSE) {
             $type = 'between';
             $args_arr = explode('-', $this->_fields[$key]['rules']['length']);
@@ -279,7 +282,7 @@ class Avalidator
             $value = intval(rtrim($this->_fields[$key]['rules']['length'], '+'));
             $type = 'morethan';
         } else {
-            $value = intval($this->_fields[$key]['rules']['length']);
+            $value = intval($args);
             $type = 'exact';
         }
         $element_value_size = strlen($this->_fields[$key]['value'][$subkey]);
@@ -299,7 +302,7 @@ class Avalidator
             // if value does not equal required value then error
             case 'exact':
                 if ($element_value_size != $value) {
-                    $this->_write_error($key, 'str_exact', array($this->_fields[$key]['element_name'], $value));
+                    $this->_write_error($key, 'length', array($this->_fields[$key]['element_name'], $value));
                 }
                 break;
         }
