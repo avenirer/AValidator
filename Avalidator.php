@@ -73,7 +73,6 @@ class Avalidator
             $args = '';
             if (strpos($rule, '[')) {
                 $args = substr($rule, strpos($rule, '['), (strpos($rule, ']')-(strpos($rule,'[')-1)));
-                echo $args;
                 $rule = str_replace($args, '', $rule);
                 $args = str_replace(array('[', ']'), '', $args);
             }
