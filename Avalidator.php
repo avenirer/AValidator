@@ -78,7 +78,7 @@ class Avalidator
             }
             $custom_message = '';
             if (strpos($rule, '<*')) {
-                $custom_message = substr($rule, strpos($rule, '<*'), (strpos($rule, '*>')-(strpos($rule,'>*')-1)));
+                $custom_message = substr($rule, strpos($rule, '<*'), (strpos($rule, '*>')-(strpos($rule,'<*')-1)));
                 $rule = str_replace($custom_message, '', $rule);
                 $custom_message = str_replace(array('<*', '*>'), '', $custom_message);
             }
