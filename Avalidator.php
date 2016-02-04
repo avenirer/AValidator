@@ -72,13 +72,14 @@ class Avalidator
         foreach ($rules_arr as $rule) {
             $args = '';
             if (strpos($rule, '[')) {
-                $args = substr($rule, strpos($rule, '['), strpos($rule, ']'));
+                $args = substr($rule, strpos($rule, '['), (strpos($rule, ']')-(strpos($rule,'[')-1)));
+                echo $args;
                 $rule = str_replace($args, '', $rule);
                 $args = str_replace(array('[', ']'), '', $args);
             }
             $custom_message = '';
             if (strpos($rule, '<*')) {
-                $custom_message = substr($rule, strpos($rule, '<*'), strpos($rule, '*>'));
+                $custom_message = substr($rule, strpos($rule, '<*'), (strpos($rule, '*>')-(strpos($rule,'>*')-1)));
                 $rule = str_replace($custom_message, '', $rule);
                 $custom_message = str_replace(array('<*', '*>'), '', $custom_message);
             }
